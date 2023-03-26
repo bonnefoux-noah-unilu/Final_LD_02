@@ -105,7 +105,7 @@ fun MovieRow(movie: Movie, onItemClick: (String) -> Unit = {}) {
     Card(modifier = Modifier
         .fillMaxWidth()
         .padding(5.dp)
-        .clickable { onItemClick(movie.id) }
+        .clickable { onItemClick(movie.title) }
         .animateContentSize(
             animationSpec = tween(
                 durationMillis = 1000,
