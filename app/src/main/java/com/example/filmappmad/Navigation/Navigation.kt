@@ -21,15 +21,13 @@ fun Navigation(){
         }
 
         composable(
-            route = "detail/{movieId}/{movieTitle}",
+            route = "detail/{movieId}",
             arguments = listOf(navArgument("movieId",){
                 type = NavType.StringType
             }
-         , navArgument("movieTitle",){
-                type = NavType.StringType
-            })
+         )
         ) {backStackEntry ->
-            DetailScreen(navController, movieId = backStackEntry.arguments?.getString("movieId"), movieTitle = backStackEntry.arguments?.getString("title"))
+            DetailScreen(navController, movieId = backStackEntry.arguments?.getString("movieId"))
         }
     }
 }

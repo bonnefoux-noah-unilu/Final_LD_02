@@ -117,9 +117,10 @@ fun MovieRow(movie: Movie, onItemClick: (String) -> Unit = {}) {
 
     ) {
         Column {
-            Box(modifier = Modifier
-                .height(150.dp)
-                .fillMaxWidth()
+            Box(
+                modifier = Modifier
+                    .height(150.dp)
+                    .fillMaxWidth()
             ) {
                 val painter = rememberImagePainter(data = movie.images[0],
                     builder = {
@@ -132,26 +133,30 @@ fun MovieRow(movie: Movie, onItemClick: (String) -> Unit = {}) {
                 )
 
 
-                Box(modifier = Modifier
-                    .fillMaxSize()
-                    .padding(10.dp),
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(10.dp),
                     contentAlignment = Alignment.TopEnd
-                ){
+                ) {
                     Icon(
                         tint = MaterialTheme.colors.secondary,
                         imageVector = Icons.Default.FavoriteBorder,
-                        contentDescription = "Add to favorites")
+                        contentDescription = "Add to favorites"
+                    )
                 }
             }
 
-            Row(modifier = Modifier
-                .fillMaxWidth()
-                .padding(5.dp),
-                horizontalArrangement = Arrangement.SpaceBetween
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(5.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                Text(movie.title, style = MaterialTheme.typography.h6,
+                Text(
+                    movie.title, style = MaterialTheme.typography.h6,
                     modifier = Modifier
-
 
 
                 )
@@ -168,30 +173,59 @@ fun MovieRow(movie: Movie, onItemClick: (String) -> Unit = {}) {
                         imageVector = Icons.Default.KeyboardArrowUp,
                         contentDescription = "Expand",
 
-                    )
+                        )
                 }
-                if(expandedstate) {
 
-                    Spacer(modifier = Modifier.height(50.dp))
 
-                    Text(text = "Director: ${movie.director}\n" +
-                            "Release Date: ${movie.year }\n" +
-                            "Genre: ${movie.genre}\n" +
-                            "Actors: ${movie.actors}\n" +
-                            "Rating: ${movie.rating}\n\n" +
-                            "Plot: ${movie.plot}\n",
+            }
+            if (expandedstate) {
+
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(5.dp),
+                ) {
+
+                    Text(
+                        text = "Director: ${movie.director}\n" +
+                                "Release Date: ${movie.year}\n" +
+                                "Genre: ${movie.genre}\n" +
+                                "Actors: ${movie.actors}\n" +
+                                "Rating: ${movie.rating}",
                         fontSize = MaterialTheme.typography.subtitle1.fontSize,
                     )
-                    Divider(startIndent = 8.dp, thickness = 1.dp, color = Color.Black)
 
-
-
-                    }
+                    Divider(
+                        color = Color.Gray, thickness = 1.dp, modifier = Modifier
+                            .width(1.dp)
+                            .padding(5.dp)
+                    )
 
                 }
+
+                Divider(
+                    color = Color.Gray, thickness = 1.dp
+                )
+
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(5.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = "\nPlot: ${movie.plot}",
+                        fontSize = MaterialTheme.typography.subtitle1.fontSize
+                    )
+                }
+
+
             }
         }
     }
+}
+
 
 
 
