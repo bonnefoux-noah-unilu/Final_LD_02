@@ -32,6 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import coil.compose.rememberImagePainter
+import com.example.filmappmad.Navigation.Screen
 import com.example.filmappmad.movies.Movie
 import com.example.filmappmad.movies.getMovies
 
@@ -47,14 +48,11 @@ fun HomeScreen(navController: NavController) {
 
             MyList(navController)
         }
-        //MyList()
-        //Greeting()
-        //WelcomeText(modifier = Modifier.padding(16.dp), text = "welcome to my app!")
     }
 }
 
 @Composable
-fun TopAppBar() {
+fun TopAppBar(navController: NavController = rememberNavController()) {
     var expanded by remember { mutableStateOf(false) }
     TopAppBar(
         title = { Text(text = "Movies") },
@@ -67,9 +65,11 @@ fun TopAppBar() {
                 expanded = expanded,
                 onDismissRequest = { expanded = false}
             ) {
-                DropdownMenuItem(onClick = { /*TODO*/ }, modifier = Modifier.width(130.dp)) {
-                    Icon(Icons.Default.Favorite, contentDescription = "Favorites" )
-                    Text(" Favorites")
+                DropdownMenuItem(onClick = { navController.navigate(Screen.FavoriteScreen.route) },
+                    modifier = Modifier.width(130.dp)) {
+
+                        Icon(Icons.Default.Favorite, contentDescription = "Favorites" )
+                        Text(" Favorites")
 
                 }
             }
@@ -223,6 +223,8 @@ fun MovieRow(movie: Movie, onItemClick: (String) -> Unit = {}) {
 
             }
         }
+
+
     }
 }
 
